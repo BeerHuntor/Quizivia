@@ -1,0 +1,402 @@
+{
+    "question1": {
+        "question": "What is the name for the Jewish New Year?",
+        "answer1": "Hanukkah",
+        "answer2": "Yom Kippur",
+        "answer3": "Kwanza",
+        "answer4": "Rosh Hashanah",
+        "correct-answer": "Rosh Hashanah"
+    },
+    "question2": {
+        "question": "How many blue stripes are there on the U.S. flag?",
+        "answer1": "6",
+        "answer2": "7",
+        "answer3": "13",
+        "answer4": "0",
+        "correct-answer": "0"
+    },
+    "question3": {
+        "question": "Which one of these characters is not friends with Harry Potter?",
+        "answer1": "Ron Weasley",
+        "answer2": "Neville Longbottom",
+        "answer3": "Draco Malfoy",
+        "answer4": "Hermione Granger",
+        "correct-answer": "Draco Malfoy"
+    },
+    "question4": {
+        "question": "What is the color of Donald Duck’s bowtie?",
+        "answer1": "Red",
+        "answer2": "Yellow",
+        "answer3": "Blue",
+        "answer4": "White",
+        "correct-answer": "Red"
+    },
+    "question5": {
+        "question": "What was the name of the band Lionel Richie was a part of?",
+        "answer1": "King Harvest",
+        "answer2": "Spectrums",
+        "answer3": "Commodores",
+        "answer4": "The Marshall Tucker Band",
+        "correct-answer": "Commodores"
+    },
+    "question6": {
+        "question": "Which animal does not appear in the Chinese zodiac?",
+        "answer1": "Dragon",
+        "answer2": "Rabbit",
+        "answer3": "Dog",
+        "answer4": "Hummingbird",
+        "correct-answer": "Hummingbird"
+    },
+    "question7": {
+        "question": "Which country held the 2016 Summer Olympics?",
+        "answer1": "China",
+        "answer2": "Ireland",
+        "answer3": "Brazil",
+        "answer4": "Italy",
+        "correct-answer": "Brazil"
+    },
+    "question8": {
+        "question": "Which planet is the hottest?",
+        "answer1": "Venus",
+        "answer2": "Saturn",
+        "answer3": "Mercury",
+        "answer4": "Mars",
+        "correct-answer": "Venus"
+    },
+    "question9": {
+        "question": "Who was the only U.S. President to resign?",
+        "answer1": "Herbert Hoover",
+        "answer2": "Richard Nixon",
+        "answer3": "George W. Bush",
+        "answer4": "Barack Obama",
+        "correct-answer": "Richard Nixon"
+    },
+    "question10": {
+        "question": "What does the “D” in “D-Day” stand for?",
+        "answer1": "Dooms",
+        "answer2": "Dark",
+        "answer3": "Day",
+        "answer4": "Dunkirk",
+        "correct-answer": "Day"
+    },
+    "question11": {
+        "question": "In which city can you find the Liberty Bell?",
+        "answer1": "Washington, D.C.",
+        "answer2": "Boston",
+        "answer3": "Philadelphia",
+        "answer4": "Manhattan",
+        "correct-answer": "Philadelphia"
+    },
+    "question12": {
+        "question": "In Pirates of the Caribbean, what was Captain Jack Sparrow’s ship’s name?",
+        "answer1": "The Marauder",
+        "answer2": "The Black Pearl",
+        "answer3": "The Black Python",
+        "answer4": "The Slytherin",
+        "correct-answer": "The Black Pearl"
+    },
+    "question13": {
+        "question": "According to Forrest Gump, 'life was like…'",
+        "answer1": "A bag of lemons",
+        "answer2": "A handful of roses",
+        "answer3": "A lollipop",
+        "answer4": "A box of chocolates",
+        "correct-answer": "A box of chocolates"
+    },
+    "question14": {
+        "question": "Linda and Bob from Bob’s Burgers have 3 kids. Which one of these characters is not one of them?",
+        "answer1": "Louise",
+        "answer2": "Gene",
+        "answer3": "Jimmy",
+        "answer4": "Tina",
+        "correct-answer": "Jimmy"
+    },
+    "question15": {
+        "question": "The British band One Direction, was made up of Harry, Louis, Niall, Zayn, and…",
+        "answer1": "Paul",
+        "answer2": "Callum",
+        "answer3": "Kevin",
+        "answer4": "Liam",
+        "correct-answer": "Liam"
+    },
+    "question16": {
+        "question": "What is the rarest blood type?",
+        "answer1": "O",
+        "answer2": "A",
+        "answer3": "B",
+        "answer4": "AB-Negative",
+        "correct-answer": "AB-Negative"
+    },
+    "question17": {
+        "question": "Holly Golightly is a character in which film?",
+        "answer1": "Breakfast at Tiffanys",
+        "answer2": "Pretty In Pink",
+        "answer3": "Funny Face",
+        "answer4": "Singing In The Rain",
+        "correct-answer": "Breakfast at Tiffanys"
+    },
+    "question18": {
+        "question": "In The Wizard of Oz, the Tin Man wanted to see the Wizard about getting…",
+        "answer1": "A brain",
+        "answer2": "An oil can",
+        "answer3": "A dog",
+        "answer4": "A heart",
+        "correct-answer": "A heart"
+    },
+    "question19": {
+        "question": "Which American state is known as the sunflower state?",
+        "answer1": "Florida",
+        "answer2": "California",
+        "answer3": "Maine",
+        "answer4": "Kansas",
+        "correct-answer": "Kansas"
+    },
+    "question20": {
+        "question": "Which one of these characters isn’t a part of the Friends group?",
+        "answer1": "Rachel",
+        "answer2": "Joey",
+        "answer3": "Gunther",
+        "answer4": "Monica",
+        "correct-answer": "Gunther"
+    },
+    "question21": {
+        "question": "How many bones are there in the human body?",
+        "answer1": "206",
+        "answer2": "205",
+        "answer3": "201",
+        "answer4": "209",
+        "correct-answer": "206"
+    },
+    "question22": {
+        "question": "Which famous singer released a song called “Adore You”?",
+        "answer1": "Harry Styles",
+        "answer2": "Dua Lipa",
+        "answer3": "Halsey",
+        "answer4": "Shawn Mendes",
+        "correct-answer": "Harry Styles"
+    },
+    "question23": {
+        "question": "Fe is the chemical symbol for…",
+        "answer1": "Zinc",
+        "answer2": "Hydrogen",
+        "answer3": "Fluorine",
+        "answer4": "Iron",
+        "correct-answer": "Iron"
+    },
+    "question24": {
+        "question": "How old do you have to be to enter the hunger games?",
+        "answer1": "12",
+        "answer2": "11",
+        "answer3": "10",
+        "answer4": "15",
+        "correct-answer": "12"
+    },
+    "question25": {
+        "question": "What language is the most spoken worldwide?",
+        "answer1": "Chinese",
+        "answer2": "Spanish",
+        "answer3": "Arabic",
+        "answer4": "English",
+        "correct-answer": "English"
+    },
+    "question26": {
+        "question": "What year did Barbie come out?",
+        "answer1": "1958",
+        "answer2": "1959",
+        "answer3": "1956",
+        "answer4": "1961",
+        "correct-answer": "1959"
+    },
+    "question27": {
+        "question": "What is Shakespeare’s shortest tragedy?",
+        "answer1": "Macbeth",
+        "answer2": "Hamlet",
+        "answer3": "Romeo & Juliet",
+        "answer4": "Othello",
+        "correct-answer": "Macbeth"
+    },
+    "question28": {
+        "question": "What is the #1 cookie in the U.S.?",
+        "answer1": "Chips Ahoy!",
+        "answer2": "Milano",
+        "answer3": "Girl Scout",
+        "answer4": "Oreo",
+        "correct-answer": "Oreo"
+    },
+    "question29": {
+        "question": "How many hearts does an octopus have?",
+        "answer1": "1",
+        "answer2": "2",
+        "answer3": "3",
+        "answer4": "4",
+        "correct-answer": "3"
+    },
+    "question30": {
+        "question": "Who wrote The Scarlett Letter?",
+        "answer1": "Shakespeare",
+        "answer2": "Stephen King",
+        "answer3": "Nathanial Hawthorne",
+        "answer4": "Ernest Hemingway",
+        "correct-answer": "Nathanial Hawthorne"
+    },
+    "question31": {
+        "question": "Which social media platform came out in 2003?",
+        "answer1": "Myspace",
+        "answer2": "Twitter",
+        "answer3": "Facebook",
+        "answer4": "Tumblr",
+        "correct-answer": "Myspace"
+    },
+    "question32": {
+        "question": "Which planet in our solar system is the largest?",
+        "answer1": "Jupiter",
+        "answer2": "Saturn",
+        "answer3": "Neptune",
+        "answer4": "Earth",
+        "correct-answer": "Jupiter"
+    },
+    "question33": {
+        "question": "The Powerpuff Girls are 3 distinct colors. What are they?",
+        "answer1": "Red, yellow, green",
+        "answer2": "Yellow, blue, green",
+        "answer3": "Blue, green, red",
+        "answer4": "Green, purple, orange",
+        "correct-answer": "Blue, green, red"
+    },
+    "question34": {
+        "question": "Which boyband sings the song 'I Want It That Way'?",
+        "answer1": "One Direction",
+        "answer2": "Backstreet Boys",
+        "answer3": "NSYNC",
+        "answer4": "New Kids On The Block",
+        "correct-answer": "Backstreet Boys"
+    },
+    "question35": {
+        "question": "Who painted the Sistine Chapel ceiling?",
+        "answer1": "Picasso",
+        "answer2": "Da Vinci",
+        "answer3": "Michelangelo",
+        "answer4": "Van Gogh",
+        "correct-answer": "Michelangelo"
+    },
+    "question36": {
+        "question": "In which state did the Salem Witch Trials take place?",
+        "answer1": "Washington",
+        "answer2": "Virginia",
+        "answer3": "Massachusetts",
+        "answer4": "Pennsylvania",
+        "correct-answer": "Massachusetts"
+    },
+    "question37": {
+        "question": "Which ocean is the largest?",
+        "answer1": "Indian",
+        "answer2": "Pacific",
+        "answer3": "Atlantic",
+        "answer4": "Arctic",
+        "correct-answer": "Pacific"
+    },
+    "question38": {
+        "question": "Which New York City building is the tallest:",
+        "answer1": "Empire State Building",
+        "answer2": "Bank of America Tower",
+        "answer3": "One World Trade Center",
+        "answer4": "Statue of Liberty",
+        "correct-answer": "One World Trade Center"
+    },
+    "question39": {
+        "question": "What does the “E” in Chuck E. Cheese stand for?",
+        "answer1": "Ernest",
+        "answer2": "Edward",
+        "answer3": "Entertainment",
+        "answer4": "Extra",
+        "correct-answer": "Entertainment"
+    },
+    "question40": {
+        "question": "Which country gifted the Statue of Liberty to the U.S.?",
+        "answer1": "Germany",
+        "answer2": "China",
+        "answer3": "France",
+        "answer4": "Italy",
+        "correct-answer": "France"
+    },
+    "question41": {
+        "question": "Who painted the Mona Lisa?",
+        "answer1": "Van Gogh",
+        "answer2": "da Vinci",
+        "answer3": "Picasso",
+        "answer4": "Monet",
+        "correct-answer": "da Vinci"
+    },
+    "question42": {
+        "question": "In which city were Anne Frank and her family in hiding?",
+        "answer1": "Paris",
+        "answer2": "Amsterdam",
+        "answer3": "Brussels",
+        "answer4": "Frankfurt",
+        "correct-answer": "Amsterdam"
+    },
+    "question43": {
+        "question": "There are 4 best friends on the TV show Pretty Little Liars: Hanna, Emily, Aria, and…",
+        "answer1": "Mona",
+        "answer2": "Charlie",
+        "answer3": "Alison",
+        "answer4": "Spencer",
+        "correct-answer": "Spencer"
+    },
+    "question44": {
+        "question": "In which decade does the Netflix series Stranger Things take place?",
+        "answer1": "the ‘70s",
+        "answer2": "the ‘80s",
+        "answer3": "the ‘90s",
+        "answer4": "the early 2000s",
+        "correct-answer": "the ‘80s"
+    },
+    "question45": {
+        "question": "Which country consumes the most chocolate?",
+        "answer1": "Spain",
+        "answer2": "Germany",
+        "answer3": "North America",
+        "answer4": "Switzerland",
+        "correct-answer": "Switzerland"
+    },
+    "question46": {
+        "question": "What is Sodium Chloride?",
+        "answer1": "Salt",
+        "answer2": "Sugar",
+        "answer3": "Chlorine",
+        "answer4": "Bleach",
+        "correct-answer": "Salt"
+    },
+    "question47": {
+        "question": "Which astrological sign is a crab?",
+        "answer1": "Pisces",
+        "answer2": "Aquarius",
+        "answer3": "Cancer",
+        "answer4": "Virgo",
+        "correct-answer": "Cancer"
+    },
+    "question48": {
+        "question": "In the Bible, how does the Virgin Mary learn of her pregnancy with baby Jesus?",
+        "answer1": "God tells her",
+        "answer2": "the angel Gabriel tells her",
+        "answer3": "she has a dream about it",
+        "answer4": "a doctor tells her",
+        "correct-answer": "the angel Gabriel tells her"
+    },
+    "question49": {
+        "question": "Who, in the Harry Potter series, is Tom Riddle?",
+        "answer1": "a student in Harry’s class",
+        "answer2": "a professor at Hogwarts",
+        "answer3": "Harry’s birth father",
+        "answer4": "Voldemort",
+        "correct-answer": "Voldemort"
+    },
+    "question50": {
+        "question": "The movie The Social Network is about which social media platform:",
+        "answer1": "Facebook",
+        "answer2": "Myspace",
+        "answer3": "Instagram",
+        "answer4": "Twitter",
+        "correct-answer": "Facebook"
+    }
+}
