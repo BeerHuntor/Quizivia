@@ -4,6 +4,10 @@ using UnityEngine;
 using SimpleJSON;
 using System.IO;
 
+///<summary>
+/// Defines what a quiz is. Pulls data from JSON files and populates the quiz via Question objects which are passed
+/// their desired properties. 
+///</summary>
 public class Quiz
 {
 
@@ -16,8 +20,14 @@ public class Quiz
         }
     }
 
+    ///<summary>
+    /// Current size of the questions in the JSON file. 
+    ///</summary>
     const int QUESTION_DATABASE_LENGTH = 50; // Number of questions in Questions.JSON
     const string jsonPath = "Assets/Data/Questions.JSON";
+    ///<summary>
+    /// Number passed to the constructor to generate a quiz of desired amount of questions.
+    ///</summary>
     private int _QuizSize;
     private List<Question> quizQuestions = new List<Question>(); // Selected Question object list that is passed to the game.
     private List<int> chosenQuestionsThisRound = new List<int>(); // Logic sanity check to make sure no repeat questions are selected
@@ -25,7 +35,9 @@ public class Quiz
     private static string jsonString = File.ReadAllText(jsonPath);
     private static JSONNode data = JSON.Parse(jsonString);
     
-    /* Method to call to generate the questions for this round/game. */
+    ///<summary>
+    /// Generates a quiz based on desired size and calls other methods to build the quiz in full. 
+    ///</summary>
     public void Generate()
     {
         if (data != null)
@@ -51,7 +63,9 @@ public class Quiz
         }
     }
 
-    /* Public get method to get the quiz questions for this round. */
+    ///<summary>
+    /// Returns the populated list of Question Objects for the round. 
+    ///</summary>
     public List<Question> GetQuestions()
     {
         if (quizQuestions.Count != _QuizSize)
@@ -61,14 +75,20 @@ public class Quiz
         return quizQuestions;
     }
     
-    /* Generates random int to pass to the Questions.JSON to select a question from the json.*/
+    ///<summary>
+    /// Generates a random number to select a random question within the Questions.JSON
+    ///</summary>
     private int GenerateQuestionIndex()
     {
         int questionIndex;
         return questionIndex = Random.Range(1, QUESTION_DATABASE_LENGTH);
     }
-    /* If question selection is valid, loops through the elements of the selected question and passes them to a list to be 
-       read from later. */
+
+    ///<summary>
+    /// Loops through the elements of the chosen question in the Questions.JSON file and passes them to a list. Then calls
+    /// the CreateQuestionFromLists() method to populate the Question object. Then clears the dynamic list of elements for the
+    /// next pass, should there be one. 
+    ///</summary>
     private void LoopThroughElements(int index)
     {
         chosenQuestionsThisRound.Add(index);
@@ -80,7 +100,9 @@ public class Quiz
         ClearElementsFromList();
     }
 
-    /* Generates a new Question object from the valid selection and adds the Question objet to a list for the round.*/
+    ///<summary>
+    /// Generates a new Question and passes to its constructer the valid elements of the selected question from the json file.
+    ///</summary>
     private void ConstructQuestionFromLists()
     {
         if (questionElements.Count != 6)
@@ -93,18 +115,24 @@ public class Quiz
 
         quizQuestions.Add(q);
     }
-    /* List to enable a logic check to ensure we don't have any repeat questions, storing the question number as an int */
+    ///<summary>
+    /// Indexes and returns the chosen questions to ensure no repeat questions are trying to be added to the Quiz.
+    ///</summary>
     private List<int> ChosenQuestion(int chosenQuestion)
     {
         chosenQuestionsThisRound.Add(chosenQuestion);
         return chosenQuestionsThisRound;
     }
-    /* Adds the chosen selected question elements to a list to be read from */ 
+    ///<summary>
+    /// Adds each element of the selected question from the json file into a list.
+    ///</summary>
     private void AddElementsToList(string element)
     {
         questionElements.Add(element);
     }
-    /* Clears the dynamic list of elements that is read from after generating the quetsion object.*/
+    ///<summary>
+    /// Clears the element list of the selected question elements from the json file.
+    ///</summary>
     private void ClearElementsFromList()
     {
         questionElements.Clear();

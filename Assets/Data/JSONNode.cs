@@ -1,11 +1,13 @@
-/* Standalone parser from Stackoverflow that enables the selection of json objects and nodes in the code. */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+
+///<summary>
+/// Standalone JSON parser to enable the lookup of elements in json files.
+///</summary>
 
 namespace SimpleJSON
 {
