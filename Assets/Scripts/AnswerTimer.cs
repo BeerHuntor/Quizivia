@@ -38,6 +38,7 @@ public class AnswerTimer : MonoBehaviour
         {
             timer -= Time.deltaTime;
             _uiManager.SetCountownTimerText(Mathf.Round(timer));
+            _uiManager.UpdateTimerFillSprite(timer, timeToAnswerQuestion);
             if (timer <= 0)
             {
                 ShouldTimerRun(false);

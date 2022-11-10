@@ -11,12 +11,16 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     private QuizMaster _quizMaster; 
-    [SerializeField] Button[] answerButtons = new Button[4];
-    [SerializeField] TextMeshProUGUI questionText; 
-    [SerializeField] Sprite correctAnswerSprite;
-    [SerializeField] Sprite defaultAnswerSprite;
+    [Header("QuizUI")]
+    [SerializeField] private Button[] answerButtons = new Button[4];
+    [SerializeField] private TextMeshProUGUI questionText; 
+    [SerializeField] private Sprite correctAnswerSprite;
+    [SerializeField] private Sprite defaultAnswerSprite;
 
-    [SerializeField] TextMeshProUGUI timerText;
+    [Header("Timer")]
+    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private Image timerSprite;
+    private float timerFillFraction; 
 
     ///<summary>
     /// Holds the selected button which was pressed this question, to enable the switching of sprites if there was a correct answer.
@@ -96,6 +100,14 @@ public class UIManager : MonoBehaviour
     public void SetCountownTimerText(float time)
     {
         timerText.text = time.ToString();
+    }
+    ///<summary>
+    /// Updates the timer fill sprite based on the current timer value from AnswerTimer.
+    ///</summary>
+    public void UpdateTimerFillSprite(float currentTimer, float answerQuestionTime)
+    {
+        timerFillFraction = currentTimer / answerQuestionTime; 
+        timerSprite.fillAmount = timerFillFraction;
     }
 
     ///<summary>
