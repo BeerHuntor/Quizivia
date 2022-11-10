@@ -1,8 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 ///<summary>
 /// Handles all logic of the quiz, checking answers, keeping score and initialising the quiz setup. 
@@ -11,10 +10,19 @@ using TMPro;
 public class QuizMaster : MonoBehaviour
 {
     UIManager _uiManager; 
+    ///<summary>
+    /// An Event that invokes when a correct answer is selected.
+    ///</summary>
+    public event Action OnCorrectAnswer;
+    ///<summary>
+    /// An Event that is invoked when player is answering a question and when has answered a question
+    ///</summary>
+    public event Action<bool> IsAnsweringQuestion;
     List<Question> myQuestions;
     private int currentQuestion;
     private int quizScore;
     private int pointsPerQuestionCorrect;
+    private float cooldownBetweenQuestions = 3.0f;
     private const int QuizSize = 2; // Set to a setting later - so user can chose amount of questions. 
 
     void Start()
@@ -54,9 +62,11 @@ public class QuizMaster : MonoBehaviour
         {
             AddScore(pointsPerQuestionCorrect);
             Debug.Log("Correct!");
+            OnCorrectAnswer?.Invoke();
         }
         currentQuestion++;
-        NextQuestion();
+        IsAnsweringQuestion?.Invoke(false);
+        StartCoroutine(WaitForCooldown());
     }
 
     ///<summary>
@@ -75,6 +85,7 @@ public class QuizMaster : MonoBehaviour
         {
             _uiManager.ChangeQuestionText(myQuestions[qNum].QuizQuestion);
             _uiManager.ChangeAnswerText(myQuestions[qNum].QuestionAnswers);
+            IsAnsweringQuestion?.Invoke(true);
         }
     }
 
@@ -92,6 +103,15 @@ public class QuizMaster : MonoBehaviour
     public int GetScore()
     {
         return quizScore;
+    }
+
+    ///<summary>
+    /// Issues a cooldown between answering a question and the next based of cooldownBetweenQuestions
+    ///</summary>
+    IEnumerator WaitForCooldown()
+    {
+        yield return new WaitForSeconds(cooldownBetweenQuestions);
+        NextQuestion();
     }
 
 }
