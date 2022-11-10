@@ -1166,6 +1166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c34da6380cb9f4c8f5b85328a57b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToAnswerQuestion: 30
 --- !u!1 &1483583742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,6 +1338,7 @@ MonoBehaviour:
   - {fileID: 913828652}
   questionText: {fileID: 705429924}
   correctAnswerSprite: {fileID: 21300000, guid: baff68cb8310f9c4cb6bb579d6a93b64, type: 3}
+  defaultAnswerSprite: {fileID: 21300000, guid: 6ada5284cdcf6ef48ad17d225105129f, type: 3}
   timerText: {fileID: 1483583743}
 --- !u!4 &1646502388
 Transform:
