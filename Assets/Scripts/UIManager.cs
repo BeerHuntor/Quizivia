@@ -22,6 +22,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image timerSprite;
     private float timerFillFraction; 
 
+    [Header("Score")]
+    [SerializeField] private TextMeshProUGUI scoreText;
+
+    [Header("Progress Bar")]
+    [SerializeField] private Slider progressBar;
+
     ///<summary>
     /// Holds the selected button which was pressed this question, to enable the switching of sprites if there was a correct answer.
     ///</summary>
@@ -34,11 +40,6 @@ public class UIManager : MonoBehaviour
         _quizMaster.OnCorrectAnswer += ChangeCorrectAnswerSprite;    
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     ///<summary>
     /// Called from QuizMaster, responsible for changing the question text on screen.
@@ -46,6 +47,7 @@ public class UIManager : MonoBehaviour
     public void ChangeQuestionText(string question)
     {
         questionText.text = question;
+        UpdateProgressBar();
     }
 
     ///<summary>
@@ -70,6 +72,15 @@ public class UIManager : MonoBehaviour
         {
             answerButtons[i].GetComponent<Image>().sprite = defaultAnswerSprite;
         }
+    }
+
+    ///<summary>
+    /// Updates the progress bar's fill amount to highlight the amount of questions left there are in the quiz. 
+    ///</summary>
+    private void UpdateProgressBar()
+    {
+        progressBar.maxValue = _quizMaster.GetQuizSize();
+        progressBar.value = ( progressBar.maxValue - _quizMaster.GetQuestionsSeen() ); 
     }
 
     ///<summary>
@@ -108,6 +119,13 @@ public class UIManager : MonoBehaviour
     {
         timerFillFraction = currentTimer / answerQuestionTime; 
         timerSprite.fillAmount = timerFillFraction;
+    }
+    ///<summary>
+    /// Sets and updates the score text. 
+    ///</summary>
+    public void SetScoreText(int scoreToShow)
+    {
+        scoreText.text = "Score: " + scoreToShow + "%";
     }
 
     ///<summary>

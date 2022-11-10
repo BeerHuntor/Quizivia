@@ -10,6 +10,8 @@ using UnityEngine;
 public class QuizMaster : MonoBehaviour
 {
     UIManager _uiManager; 
+    List<Question> myQuestions;
+    
     ///<summary>
     /// An Event that invokes when a correct answer is selected.
     ///</summary>
@@ -18,12 +20,13 @@ public class QuizMaster : MonoBehaviour
     /// An Event that is invoked when player is answering a question and when has answered a question
     ///</summary>
     public event Action<bool> IsAnsweringQuestion;
-    List<Question> myQuestions;
-    private int currentQuestion;
-    private int quizScore;
-    private int pointsPerQuestionCorrect;
-    private float cooldownBetweenQuestions = 3.0f;
+    
     private const int QuizSize = 2; // Set to a setting later - so user can chose amount of questions. 
+    private int currentQuestion; // For storing the current question that the player is currently on in the list of questions. 
+    private float quizScore;
+    private int questionsSeen; 
+    private int correctQuestions;
+    private float cooldownBetweenQuestions = 3.0f;
     
     // Unsure on this, people may get offended!.
     private string[] incorrectBerates = new string[] {
@@ -57,13 +60,13 @@ public class QuizMaster : MonoBehaviour
 
     ///<summary>
     /// Generates a new quiz with the desired size of questions and calls to grab the question list from the Quiz object.
-    /// Initialises values needed for a new quiz, score, currentQuestionIndex etc
+    /// Initialises values needed for a new quiz, score, currentQuestionIndex etc.
     ///</summary>
     void GenerateQuiz()
     {
         Quiz myQuiz = new Quiz(QuizSize);
         myQuiz.Generate();
-        quizScore = 0;
+        quizScore = 0.0f;
         currentQuestion = 0;
         myQuestions = myQuiz.GetQuestions();
     }
@@ -83,14 +86,14 @@ public class QuizMaster : MonoBehaviour
     {
         if (answer == myQuestions[GetCurrentQuestionNumber()].Correct_Answer)
         {
-            AddScore(pointsPerQuestionCorrect);
-            Debug.Log("Correct!");
+            correctQuestions++;
             OnCorrectAnswer?.Invoke();
         } 
         else 
         {
             _uiManager.ChangeQuestionText(GetIncorrectSaying());
         }
+        CalculateScore();
         currentQuestion++;
         IsAnsweringQuestion?.Invoke(false);
         StartCoroutine(WaitForCooldown());
@@ -112,28 +115,30 @@ public class QuizMaster : MonoBehaviour
         {
             _uiManager.ChangeQuestionText(myQuestions[qNum].QuizQuestion);
             _uiManager.ChangeAnswerText(myQuestions[qNum].QuestionAnswers);
+            questionsSeen++;
             IsAnsweringQuestion?.Invoke(true);
         }
     }
 
     ///<summary>
-    /// Adds to the quizScore by the amount passed into the argument
+    /// Calculates the current quiz score as a percentage.
     ///</summary>
-    private void AddScore(int scoreToAdd)
+    private void CalculateScore()
     {
-        quizScore += scoreToAdd;
+        quizScore = correctQuestions /  (float)questionsSeen * 100 ;
+        _uiManager.SetScoreText(GetScore());
     }
 
     ///<summary>
-    /// Returns the current quizScore
+    /// Returns the current quizScore as a percentage.
     ///</summary>
-    public int GetScore()
+    private int GetScore()
     {
-        return quizScore;
+        return Mathf.RoundToInt(quizScore);
     }
 
     ///<summary>
-    /// Issues a cooldown between answering a question and the next based of cooldownBetweenQuestions
+    /// Issues a cooldown between answering a question and the next based of cooldownBetweenQuestions.
     ///</summary>
     IEnumerator WaitForCooldown()
     {
@@ -142,12 +147,26 @@ public class QuizMaster : MonoBehaviour
     }
 
     ///<summary>
-    /// Returns random string from the incorrectSayings array to pass show the player on incorrect choice
+    /// Returns random string from the incorrectSayings array to pass show the player on incorrect choice.
     ///</summary>
     private string GetIncorrectSaying()
     {
         int index = UnityEngine.Random.Range(0,incorrectBerates.Length);
         return incorrectBerates[index];
+    }
+    ///<summary>
+    /// Returns the QuizSize.
+    ///</summary>
+    public int GetQuizSize()
+    {
+        return QuizSize; 
+    }
+    ///<summary>
+    /// Returns the amount of questions seen so far.
+    ///</summary>
+    public int GetQuestionsSeen()
+    {
+        return questionsSeen;
     }
 
 }
