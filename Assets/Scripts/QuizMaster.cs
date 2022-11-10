@@ -24,6 +24,29 @@ public class QuizMaster : MonoBehaviour
     private int pointsPerQuestionCorrect;
     private float cooldownBetweenQuestions = 3.0f;
     private const int QuizSize = 2; // Set to a setting later - so user can chose amount of questions. 
+    
+    // Unsure on this, people may get offended!.
+    private string[] incorrectBerates = new string[] {
+        "You silly goose.", 
+        "Even a child would know that one!",
+        "HAHA - WRONG!",
+        "Here wear this pointy hat with a D on it!",
+        "And here I thought you were smart..",
+        "Oooo, so close...yet so far.",
+        "Deffinately not smarter than a 10 year old!",
+        "Oooops, try again.",
+        "Did you actually go to school?",
+        "If you had a brain you would be dangerous.",
+        "You sound like you have 9 toes.",
+        "Your knowledge is receding like your hairline.",
+        "If there was 2 answers, you would still get it wrong.",
+        "2+2 = 5 -- Quick Maffs.",
+        "There are chimps that are smarter than you.",
+        "Praying couldn't help you answer this one.",
+        "I bet you ate dirt as a kid.",
+        "LOL."
+    }; 
+
 
     void Start()
     {
@@ -63,6 +86,10 @@ public class QuizMaster : MonoBehaviour
             AddScore(pointsPerQuestionCorrect);
             Debug.Log("Correct!");
             OnCorrectAnswer?.Invoke();
+        } 
+        else 
+        {
+            _uiManager.ChangeQuestionText(GetIncorrectSaying());
         }
         currentQuestion++;
         IsAnsweringQuestion?.Invoke(false);
@@ -112,6 +139,15 @@ public class QuizMaster : MonoBehaviour
     {
         yield return new WaitForSeconds(cooldownBetweenQuestions);
         NextQuestion();
+    }
+
+    ///<summary>
+    /// Returns random string from the incorrectSayings array to pass show the player on incorrect choice
+    ///</summary>
+    private string GetIncorrectSaying()
+    {
+        int index = UnityEngine.Random.Range(0,incorrectBerates.Length);
+        return incorrectBerates[index];
     }
 
 }
