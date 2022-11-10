@@ -13,26 +13,27 @@ public class UIManager : MonoBehaviour
     private QuizMaster _quizMaster; 
     [SerializeField] Button[] answerButtons = new Button[4];
     [SerializeField] TextMeshProUGUI questionText; 
+    [SerializeField] Sprite correctAnswerSprite;
+    [SerializeField] Sprite defaultAnswerSprite;
+
+    [SerializeField] TextMeshProUGUI timerText;
+
+    ///<summary>
+    /// Holds the selected button which was pressed this question, to enable the switching of sprites if there was a correct answer.
+    ///</summary>
+    private Button selectedButton;
+    
     // Start is called before the first frame update
     void Start()
     {
-        _quizMaster = FindObjectOfType<QuizMaster>();    
+        _quizMaster = FindObjectOfType<QuizMaster>();
+        _quizMaster.OnCorrectAnswer += ChangeCorrectAnswerSprite;    
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
-
-    ///<summary>
-    /// Triggers OnClick Event on the button pressed, grabs the text from the component on the button and passes it to 
-    /// the QuizMaster's method call to check the answer. 
-    ///</summary>
-    public void GetAnswerFromButton(Button buttonClicked)
-    {
-        string answerText = answerText = buttonClicked.GetComponentInChildren<TextMeshProUGUI>().text;
-        _quizMaster.CheckAnswer(answerText);
     }
 
     ///<summary>
@@ -48,9 +49,60 @@ public class UIManager : MonoBehaviour
     ///</summary>
     public void ChangeAnswerText(string[] answers)
     {
+        SetDefautAnswerButtonSprites();
+        IsButtonsInteractable(true);
         for (int i = 0; i < answerButtons.Length; i++)
         {
             answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = answers[i];
         }
+    }
+
+    ///<summary>
+    /// Sets the button sprites to their default sprites - pre correct answer.
+    ///</summary>
+    private void SetDefautAnswerButtonSprites()
+    {
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            answerButtons[i].GetComponent<Image>().sprite = defaultAnswerSprite;
+        }
+    }
+
+    ///<summary>
+    /// Triggers OnClick Event on the button pressed, grabs the text from the component on the button and passes it to 
+    /// the QuizMaster's method call to check the answer. 
+    ///</summary>
+    public void GetAnswerFromButton(Button buttonClicked)
+    {
+        selectedButton = buttonClicked;
+        IsButtonsInteractable(false);
+        string answerText = answerText = buttonClicked.GetComponentInChildren<TextMeshProUGUI>().text;
+        _quizMaster.CheckAnswer(answerText);
+    }
+
+    ///<summary>
+    /// Toggles the interactability on the answer buttons when called.
+    ///</summary>
+    private void IsButtonsInteractable(bool interactable)
+    {
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            answerButtons[i].interactable = interactable;
+        }
+    }
+    ///<summary>
+    /// Sets the countdown timers text to the value passed to it
+    ///</summary>
+    public void SetCountownTimerText(float time)
+    {
+        timerText.text = time.ToString();
+    }
+
+    ///<summary>
+    /// Fires when the OnCorrectAnswer Event is triggered in QuizMaster.  Changes the correct answer sprite to show selected answer. 
+    ///</summary>
+    private void ChangeCorrectAnswerSprite()
+    {
+        selectedButton.GetComponent<Image>().sprite = correctAnswerSprite;
     }
 }
