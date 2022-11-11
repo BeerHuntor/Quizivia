@@ -180,12 +180,17 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region SettingsMenu
+    ///<summary>
+    /// Initializes the settings menu by calling Methods which set the UI Elements.
+    ///</summary>
     public void InitSettingsMenuScreen()
     {
         BaseQuestionSettings();
         BaseAnswerTimeSettings();
     }
-
+    ///<summary>
+    /// Sets the base values of the QuestionSettingsSlider and accompanying text when this canvas is switched.
+    ///</summary>
     private void BaseQuestionSettings()
     {
         questionSettingsSlider.maxValue = _settingsManager.GetQuestionDatabaseSize();
@@ -193,11 +198,17 @@ public class UIManager : MonoBehaviour
         questionSettingsSliderMainText.text = "How Many Questions In Quiz?";
         questionSettingsSliderValueText.text = questionSettingsSlider.value.ToString();
     }
+    ///<summary>
+    /// Updates the slider value and accompanying text when OnSliderChange Event fires from the slider.
+    ///</summary>
     public void UpdateQuestionSlider()
     {
         questionSettingsSliderValueText.text = questionSettingsSlider.value.ToString();
         _settingsManager.SetQuizSize((int)questionSettingsSlider.value);
     }
+    ///<summary>
+    /// Sets the base values of the AnswerTimeSlider and accompanying text when this canvas is switched.
+    ///</summary>
     private void BaseAnswerTimeSettings()
     {
         answerSettingsSlider.maxValue = _settingsManager.GetMaxTimeToAnswer();
@@ -205,6 +216,9 @@ public class UIManager : MonoBehaviour
         answerSettingsSliderMainText.text = "Seconds to answer each question?";
         answerSettingsSliderValueText.text = answerSettingsSlider.value.ToString();
     }
+    ///<summary>
+    /// Updates the slider value and accompanying text when OnSliderChange event fires from the slider.
+    ///</summary>
     public void UpdateAnswerSlider()
     {
         answerSettingsSliderValueText.text = answerSettingsSlider.value.ToString();
