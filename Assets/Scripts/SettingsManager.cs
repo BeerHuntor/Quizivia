@@ -24,10 +24,6 @@ public class SettingsManager : MonoBehaviour
     {
         settings = this;
     }
-    void Start()
-    {
-        Debug.Log(UserDefinedTimeToAnswer + ", " + UserSelectedQuizSize);
-    }
 
     ///<summary>
     /// Returns the QuizSize setting if one was set, if not defaults to the default setting.

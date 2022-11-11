@@ -43,12 +43,10 @@ public class AnswerTimer : MonoBehaviour
     private void OnEnable()
     {
         isTimerRunning = true;
-        SubscribeToEvents();
     }
     private void OnDisable()
     {
         isTimerRunning = false;
-        UnscubscribeToEvents();
     }
     private void Update()
     {
