@@ -10,16 +10,17 @@ using UnityEngine;
 public class QuizMaster : MonoBehaviour
 {
     UIManager _uiManager; 
+    GameManager _gameManager;
     List<Question> myQuestions;
     
     ///<summary>
     /// An Event that invokes when a correct answer is selected.
     ///</summary>
-    public event Action OnCorrectAnswer;
+    public event Action OnCorrectAnswerEvent;
     ///<summary>
     /// An Event that is invoked when player is answering a question and when has answered a question
     ///</summary>
-    public event Action<bool> IsAnsweringQuestion;
+    public event Action<bool> IsAnsweringQuestionEvent;
     
     private const int QuizSize = 2; // Set to a setting later - so user can chose amount of questions. 
     private int currentQuestion; // For storing the current question that the player is currently on in the list of questions. 
@@ -53,22 +54,30 @@ public class QuizMaster : MonoBehaviour
 
     void Start()
     {
-        _uiManager = FindObjectOfType<UIManager>();
-        GenerateQuiz();
-        NextQuestion();
+        Init();
     }
-
+    ///<summary>
+    /// Initializes everything needed at the start of the game
+    ///</summary>
+    private void Init()
+    {
+        _uiManager = FindObjectOfType<UIManager>();
+        _gameManager = FindObjectOfType<GameManager>();
+        _gameManager.OnStartGameEvent += GenerateQuiz; 
+    }
+   
     ///<summary>
     /// Generates a new quiz with the desired size of questions and calls to grab the question list from the Quiz object.
     /// Initialises values needed for a new quiz, score, currentQuestionIndex etc.
     ///</summary>
-    void GenerateQuiz()
+    void GenerateQuiz(int quizSize)
     {
-        Quiz myQuiz = new Quiz(QuizSize);
+        Quiz myQuiz = new Quiz(quizSize);
         myQuiz.Generate();
         quizScore = 0.0f;
         currentQuestion = 0;
         myQuestions = myQuiz.GetQuestions();
+        NextQuestion();
     }
 
     ///<summary>
@@ -87,7 +96,7 @@ public class QuizMaster : MonoBehaviour
         if (answer == myQuestions[GetCurrentQuestionNumber()].Correct_Answer)
         {
             correctQuestions++;
-            OnCorrectAnswer?.Invoke();
+            OnCorrectAnswerEvent?.Invoke();
         } 
         else 
         {
@@ -95,7 +104,7 @@ public class QuizMaster : MonoBehaviour
         }
         CalculateScore();
         currentQuestion++;
-        IsAnsweringQuestion?.Invoke(false);
+        IsAnsweringQuestionEvent?.Invoke(false);
         StartCoroutine(WaitForCooldown());
     }
 
@@ -108,6 +117,7 @@ public class QuizMaster : MonoBehaviour
         int qNum = GetCurrentQuestionNumber();
         if (qNum > (myQuestions.Count - 1)) // -1 due to zero index
         {
+            _gameManager.SetIsGameRunning(false);
             Debug.LogWarning("Quizivia:: You answered all the questions -- Well Done!");
             return;
         }
@@ -116,7 +126,7 @@ public class QuizMaster : MonoBehaviour
             _uiManager.ChangeQuestionText(myQuestions[qNum].QuizQuestion);
             _uiManager.ChangeAnswerText(myQuestions[qNum].QuestionAnswers);
             questionsSeen++;
-            IsAnsweringQuestion?.Invoke(true);
+            IsAnsweringQuestionEvent?.Invoke(true);
         }
     }
 
@@ -154,13 +164,7 @@ public class QuizMaster : MonoBehaviour
         int index = UnityEngine.Random.Range(0,incorrectBerates.Length);
         return incorrectBerates[index];
     }
-    ///<summary>
-    /// Returns the QuizSize.
-    ///</summary>
-    public int GetQuizSize()
-    {
-        return QuizSize; 
-    }
+
     ///<summary>
     /// Returns the amount of questions seen so far.
     ///</summary>
