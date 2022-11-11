@@ -32,6 +32,7 @@ public class Quiz
     private List<Question> quizQuestions = new List<Question>(); // Selected Question object list that is passed to the game.
     private List<int> chosenQuestionsThisRound = new List<int>(); // Logic sanity check to make sure no repeat questions are selected
     private List<string> questionElements = new List<string>(); // Dynamic list of elements that is cleared once looped through
+    private List<int> questionIndexes = new List<int>(); // Dynamic helper list for generating random question method.
     private static string jsonString = File.ReadAllText(jsonPath);
     private static JSONNode data = JSON.Parse(jsonString);
     
@@ -48,11 +49,6 @@ public class Quiz
                 if (!chosenQuestionsThisRound.Contains(index))
                 {
                     LoopThroughElements(index);
-                }
-                else
-                {
-                    LoopThroughElements(GenerateQuestionIndex());
-                    Debug.LogWarning("Quizivia:: Generating New Question -- Duplicate Selection!");
                 }
             }
         }
@@ -80,8 +76,18 @@ public class Quiz
     ///</summary>
     private int GenerateQuestionIndex()
     {
-        int questionIndex;
-        return questionIndex = Random.Range(1, QUESTION_DATABASE_LENGTH);
+        int questionIndex = -1;
+        bool searchingForIndex = true; 
+        while (searchingForIndex)
+        {
+            questionIndex = Random.Range(1, QUESTION_DATABASE_LENGTH);
+            if(!questionIndexes.Contains(questionIndex))
+            {
+                questionIndexes.Add(questionIndex);
+                searchingForIndex = false;
+            }
+        }
+        return questionIndex;
     }
 
     ///<summary>
