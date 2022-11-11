@@ -71,7 +71,7 @@ public class UIManager : MonoBehaviour
     {
         _quizMaster = FindObjectOfType<QuizMaster>();
         _gameManager = FindObjectOfType<GameManager>();
-        _settingsManager = SettingsManager.settings;
+        _settingsManager = FindObjectOfType<SettingsManager>();
         _quizMaster.OnCorrectAnswerEvent += ChangeCorrectAnswerSprite;
         _gameManager.OnSwitchCanvasEvent += OnSwitchCanvasEvent;
     }
@@ -198,7 +198,8 @@ public class UIManager : MonoBehaviour
     ///</summary>
     private void BaseQuestionSettings()
     {
-        questionSettingsSlider.value = _settingsManager.GetQuestionDatabaseSize();
+        questionSettingsSlider.maxValue = _settingsManager.GetQuestionDatabaseSize();
+        questionSettingsSlider.value = _settingsManager.GetQuizSize();
         questionSettingsSliderMainText.text = "How Many Questions In Quiz?";
         questionSettingsSliderValueText.text = questionSettingsSlider.value.ToString();
     }
