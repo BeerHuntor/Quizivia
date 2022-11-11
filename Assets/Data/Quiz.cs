@@ -18,7 +18,7 @@ public class Quiz
             chosenQuestionsThisRound.Clear();
         }
     }
-    SettingsManager _settingsManager = new SettingsManager();
+    SettingsManager _settingsManager = SettingsManager.settings;
 
     const string jsonPath = "Assets/Data/Questions.JSON";
     ///<summary>

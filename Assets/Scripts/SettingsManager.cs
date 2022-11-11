@@ -6,18 +6,28 @@ using UnityEngine;
 /// Responsible for handling the settings of the game
 ///</summary>
 
-public class SettingsManager
+public class SettingsManager : MonoBehaviour
 {
+    public static SettingsManager settings;
     private const int DEFAULT_QUIZ_SIZE = 15;
-    public int UserSelectedQuizSize { get; protected set; }
+    public int UserSelectedQuizSize { get; private set; }
     private const int DEFAULT_TIME_TO_ANSWER = 15;
     private const int MAX_TIME_TO_ANSWER = 30;
-    public int UserDefinedTimeToAnswer { get; protected set; }
+    public int UserDefinedTimeToAnswer { get; private set;}
 
     ///<summary>
     /// Current size of the questions in the JSON file. 
     ///</summary>
     const int QUESTION_DATABASE_LENGTH = 50; // Number of questions in Questions.JSON
+
+    void Awake()
+    {
+        settings = this;
+    }
+    void Start()
+    {
+        Debug.Log(UserDefinedTimeToAnswer + ", " + UserSelectedQuizSize);
+    }
 
     ///<summary>
     /// Returns the QuizSize setting if one was set, if not defaults to the default setting.

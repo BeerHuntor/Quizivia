@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 ///<summary>
@@ -11,7 +9,6 @@ public class GameManager : MonoBehaviour
     private UIManager _uiMangager; 
     private QuizMaster _quizMaster;
     private SettingsManager _settingsManager;
-
     ///<summary>
     /// An Event which is invoked when the player presses the play button.
     ///</summary>
@@ -36,7 +33,7 @@ public class GameManager : MonoBehaviour
     {
         _uiMangager = FindObjectOfType<UIManager>();
         _quizMaster = FindObjectOfType<QuizMaster>();
-        _settingsManager = new SettingsManager();
+        _settingsManager = SettingsManager.settings;
     }
 
     ///<summary>

@@ -11,8 +11,7 @@ public class AnswerTimer : MonoBehaviour
     UIManager _uiManager;
     QuizMaster _quizMaster;
     GameManager _gameManager;
-    [SerializeField] private float timeToAnswerQuestion = 30.0f; // Maybe add this as a setting to increase score and difficulty?
-
+    SettingsManager _settingsManager;
     private bool isTimerRunning;
 
     private float timer;
@@ -26,7 +25,8 @@ public class AnswerTimer : MonoBehaviour
         _uiManager = FindObjectOfType<UIManager>();
         _quizMaster = FindObjectOfType<QuizMaster>();
         _gameManager = FindObjectOfType<GameManager>();
-        timer = timeToAnswerQuestion;
+        _settingsManager = SettingsManager.settings;
+        timer = _settingsManager.GetTimeToAnswer();
         SubscribeToEvents();
         //isTimerRunning = true;
          
@@ -64,7 +64,7 @@ public class AnswerTimer : MonoBehaviour
         {
             timer -= Time.deltaTime;
             _uiManager.SetCountownTimerText(Mathf.Round(timer));
-            _uiManager.UpdateTimerFillSprite(timer, timeToAnswerQuestion);
+            _uiManager.UpdateTimerFillSprite(timer, _settingsManager.GetTimeToAnswer());
             if (timer <= 0)
             {
                 ShouldTimerRunEvent(false);
@@ -94,6 +94,6 @@ public class AnswerTimer : MonoBehaviour
     ///</summary>
     private void ResetTimer()
     {
-        timer = timeToAnswerQuestion;
+        timer = _settingsManager.GetTimeToAnswer();
     }
 }

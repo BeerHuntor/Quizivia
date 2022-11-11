@@ -22,7 +22,6 @@ public class QuizMaster : MonoBehaviour
     ///</summary>
     public event Action<bool> IsAnsweringQuestionEvent;
     
-    private const int QuizSize = 2; // Set to a setting later - so user can chose amount of questions. 
     private int currentQuestion; // For storing the current question that the player is currently on in the list of questions. 
     private float quizScore;
     private int questionsSeen; 
@@ -76,6 +75,8 @@ public class QuizMaster : MonoBehaviour
         myQuiz.Generate();
         quizScore = 0.0f;
         currentQuestion = 0;
+        correctQuestions = 0; 
+        questionsSeen = 0;
         myQuestions = myQuiz.GetQuestions();
         NextQuestion();
     }
@@ -145,6 +146,13 @@ public class QuizMaster : MonoBehaviour
     private int GetScore()
     {
         return Mathf.RoundToInt(quizScore);
+    }
+    ///<summary>
+    /// Returns the quiz score
+    ///</summary>
+    public int GetQuizScore()
+    {
+        return GetScore();
     }
 
     ///<summary>

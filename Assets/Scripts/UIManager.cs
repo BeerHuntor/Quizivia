@@ -11,8 +11,8 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     QuizMaster _quizMaster;
-    SettingsManager _settingsManager;
     GameManager _gameManager;
+    SettingsManager _settingsManager;
 
     [Header("Canvas")]
     [SerializeField] private Canvas titleScreenCanvas; // index 0 -- SwitchCanvas() Method
@@ -53,6 +53,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI answerSettingsSliderMainText;
     [SerializeField] TextMeshProUGUI answerSettingsSliderValueText;
     
+    [Header("End Of Quiz Screen")]
+    [SerializeField] TextMeshProUGUI endOfQuizMainText;
 
 
     // Start is called before the first frame update
@@ -69,7 +71,7 @@ public class UIManager : MonoBehaviour
     {
         _quizMaster = FindObjectOfType<QuizMaster>();
         _gameManager = FindObjectOfType<GameManager>();
-        _settingsManager = new SettingsManager();
+        _settingsManager = SettingsManager.settings;
         _quizMaster.OnCorrectAnswerEvent += ChangeCorrectAnswerSprite;
         _gameManager.OnSwitchCanvasEvent += OnSwitchCanvasEvent;
     }
@@ -113,7 +115,7 @@ public class UIManager : MonoBehaviour
     ///</summary>
     private void UpdateProgressBar()
     {
-        progressBar.maxValue = _settingsManager.GetQuizSize();
+        progressBar.maxValue = SettingsManager.settings.GetQuizSize();
         progressBar.value = (progressBar.maxValue - _quizMaster.GetQuestionsSeen());
         // if (_quizMaster.GetQuestionsSeen() == progressBar.maxValue)
         // {
@@ -179,6 +181,9 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+    #region TitleScreen
+    #endregion
+
     #region SettingsMenu
     ///<summary>
     /// Initializes the settings menu by calling Methods which set the UI Elements.
@@ -193,7 +198,6 @@ public class UIManager : MonoBehaviour
     ///</summary>
     private void BaseQuestionSettings()
     {
-        questionSettingsSlider.maxValue = _settingsManager.GetQuestionDatabaseSize();
         questionSettingsSlider.value = _settingsManager.GetQuizSize();
         questionSettingsSliderMainText.text = "How Many Questions In Quiz?";
         questionSettingsSliderValueText.text = questionSettingsSlider.value.ToString();
@@ -227,7 +231,11 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    #region TitleScreen
+    #region EndOfQuizScreen
+    private void EndOfQuiz()
+    {
+        endOfQuizMainText.text = "Congratulations! You scored; \n" + _quizMaster.GetQuizScore() + "%";
+    }
     #endregion
 
     #region SwitchCanvas
@@ -269,6 +277,7 @@ public class UIManager : MonoBehaviour
                 break;
             case 4:
                 SwitchCanvas(endOfQuizCanvas);
+                EndOfQuiz();
                 break;
         }
 
