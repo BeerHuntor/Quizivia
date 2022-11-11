@@ -8,22 +8,48 @@ using UnityEngine;
 
 public class AnswerTimer : MonoBehaviour
 {
-    UIManager _uiManager; 
+    UIManager _uiManager;
     QuizMaster _quizMaster;
+    GameManager _gameManager;
     [SerializeField] private float timeToAnswerQuestion = 30.0f; // Maybe add this as a setting to increase score and difficulty?
 
     private bool isTimerRunning;
 
-    private float timer; 
+    private float timer;
 
     void Start()
     {
+        Init();
+    }
+    private void Init()
+    {
         _uiManager = FindObjectOfType<UIManager>();
         _quizMaster = FindObjectOfType<QuizMaster>();
+        _gameManager = FindObjectOfType<GameManager>();
         timer = timeToAnswerQuestion;
-        _quizMaster.IsAnsweringQuestion += ShouldTimerRun; 
+        SubscribeToEvents();
+        //isTimerRunning = true;
+         
+    }
+    private void SubscribeToEvents()
+    {
+        _quizMaster.IsAnsweringQuestionEvent += ShouldTimerRunEvent;
     }
 
+    private void UnscubscribeToEvents()
+    {
+        _quizMaster.IsAnsweringQuestionEvent -= ShouldTimerRunEvent;
+    }
+    private void OnEnable()
+    {
+        isTimerRunning = true;
+        SubscribeToEvents();
+    }
+    private void OnDisable()
+    {
+        isTimerRunning = false;
+        UnscubscribeToEvents();
+    }
     private void Update()
     {
         UpdateTimer();
@@ -33,7 +59,7 @@ public class AnswerTimer : MonoBehaviour
     /// Updates the countdown timer and calls the UIManager to update its text to display
     ///</summary>
     private void UpdateTimer()
-    {
+    {   
         if (isTimerRunning)
         {
             timer -= Time.deltaTime;
@@ -41,7 +67,7 @@ public class AnswerTimer : MonoBehaviour
             _uiManager.UpdateTimerFillSprite(timer, timeToAnswerQuestion);
             if (timer <= 0)
             {
-                ShouldTimerRun(false);
+                ShouldTimerRunEvent(false);
                 _quizMaster.CheckAnswer(null);
             }
         }
@@ -54,10 +80,10 @@ public class AnswerTimer : MonoBehaviour
     ///<summary>
     /// Sets the bool in response to the IsAnsweringQuestion Event in QuizMaster to say wether the timer should be running or not.
     ///</summary>
-    private void ShouldTimerRun(bool timerRunning)
+    private void ShouldTimerRunEvent(bool timerRunning)
     {
         isTimerRunning = timerRunning;
-        if(timerRunning)
+        if (isTimerRunning)
         {
             ResetTimer();
         }

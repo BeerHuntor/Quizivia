@@ -117,9 +117,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -164,9 +164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Quizma_Light_Demo TMP_MISSING_CHARACTER_FIX
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 1696036314
   material: {fileID: -4516892854788462002}
-  materialHashCode: 0
+  materialHashCode: -209208134
   m_Version: 1.1.0
   m_SourceFontFileGUID: 69978f602d0c9a24d8aae642d8433bc5
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 69978f602d0c9a24d8aae642d8433bc5, type: 3}
@@ -388,20 +388,6 @@ MonoBehaviour:
       m_Y: 392
       m_Width: 32
       m_Height: 4
-    m_Scale: 1
-    m_AtlasIndex: 0
-  - m_Index: 17
-    m_Metrics:
-      m_Width: 48.890625
-      m_Height: 62.625
-      m_HorizontalBearingX: 3.65625
-      m_HorizontalBearingY: 52.296875
-      m_HorizontalAdvance: 56.65625
-    m_GlyphRect:
-      m_X: 38
-      m_Y: 6
-      m_Width: 50
-      m_Height: 64
     m_Scale: 1
     m_AtlasIndex: 0
   - m_Index: 18
@@ -1596,10 +1582,6 @@ MonoBehaviour:
     m_GlyphIndex: 16
     m_Scale: 1
   - m_ElementType: 1
-    m_Unicode: 46
-    m_GlyphIndex: 17
-    m_Scale: 1
-  - m_ElementType: 1
     m_Unicode: 47
     m_GlyphIndex: 18
     m_Scale: 1
@@ -2635,7 +2617,8 @@ MonoBehaviour:
   m_FontFeatureTable:
     m_GlyphPairAdjustmentRecords: []
   fallbackFontAssets: []
-  m_FallbackFontAssetTable: []
+  m_FallbackFontAssetTable:
+  - {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_CreationSettings:
     sourceFontFileName: 
     sourceFontFileGUID: 69978f602d0c9a24d8aae642d8433bc5

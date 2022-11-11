@@ -10,17 +10,27 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    private QuizMaster _quizMaster; 
+    QuizMaster _quizMaster;
+    SettingsManager _settingsManager;
+    GameManager _gameManager;
+
+    [Header("Canvas")]
+    [SerializeField] private Canvas titleScreenCanvas; // index 0 -- SwitchCanvas() Method
+    [SerializeField] private Canvas settingScreenCanvas; // index 1 -- SwitchCanvas() Method
+    [SerializeField] private Canvas quizScreenCanvas; // index 2 -- SwitchCanvas() Method
+    [SerializeField] private Canvas endOfQuizCanvas; // index 4 -- SwitchCanvas() Method
+
+    [Header("Quiz Proper")]
     [Header("QuizUI")]
     [SerializeField] private Button[] answerButtons = new Button[4];
-    [SerializeField] private TextMeshProUGUI questionText; 
+    [SerializeField] private TextMeshProUGUI questionText;
     [SerializeField] private Sprite correctAnswerSprite;
     [SerializeField] private Sprite defaultAnswerSprite;
 
     [Header("Timer")]
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private Image timerSprite;
-    private float timerFillFraction; 
+    private float timerFillFraction;
 
     [Header("Score")]
     [SerializeField] private TextMeshProUGUI scoreText;
@@ -32,15 +42,31 @@ public class UIManager : MonoBehaviour
     /// Holds the selected button which was pressed this question, to enable the switching of sprites if there was a correct answer.
     ///</summary>
     private Button selectedButton;
-    
+
+    [Header("Title Screen")]
+    [SerializeField] private Button[] titleButtons;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        _quizMaster = FindObjectOfType<QuizMaster>();
-        _quizMaster.OnCorrectAnswer += ChangeCorrectAnswerSprite;    
+        Init();
+        SwitchCanvas(titleScreenCanvas);
     }
 
+    ///<summary>
+    /// Initialises everything needed at the start of a game. 
+    ///</summary>
+    void Init()
+    {
+        _quizMaster = FindObjectOfType<QuizMaster>();
+        _gameManager = FindObjectOfType<GameManager>();
+        _settingsManager = new SettingsManager();
+        _quizMaster.OnCorrectAnswerEvent += ChangeCorrectAnswerSprite;
+        _gameManager.OnSwitchCanvasEvent += OnSwitchCanvasEvent;
+    }
 
+    #region QuizProper
     ///<summary>
     /// Called from QuizMaster, responsible for changing the question text on screen.
     ///</summary>
@@ -72,15 +98,23 @@ public class UIManager : MonoBehaviour
         {
             answerButtons[i].GetComponent<Image>().sprite = defaultAnswerSprite;
         }
-    }
 
+    }
     ///<summary>
     /// Updates the progress bar's fill amount to highlight the amount of questions left there are in the quiz. 
     ///</summary>
     private void UpdateProgressBar()
     {
-        progressBar.maxValue = _quizMaster.GetQuizSize();
-        progressBar.value = ( progressBar.maxValue - _quizMaster.GetQuestionsSeen() ); 
+        progressBar.maxValue = _settingsManager.GetQuizSize();
+        progressBar.value = (progressBar.maxValue - _quizMaster.GetQuestionsSeen());
+        // if (_quizMaster.GetQuestionsSeen() == progressBar.maxValue)
+        // {
+        //     Image[] fillAmount = progressBar.gameObject.GetComponentsInChildren<Image>();
+        //     foreach (Image image in fillAmount)
+        //     {
+        //         Debug.Log(image.gameObject.name);
+        //     }
+        // }
     }
 
     ///<summary>
@@ -117,7 +151,7 @@ public class UIManager : MonoBehaviour
     ///</summary>
     public void UpdateTimerFillSprite(float currentTimer, float answerQuestionTime)
     {
-        timerFillFraction = currentTimer / answerQuestionTime; 
+        timerFillFraction = currentTimer / answerQuestionTime;
         timerSprite.fillAmount = timerFillFraction;
     }
     ///<summary>
@@ -135,4 +169,57 @@ public class UIManager : MonoBehaviour
     {
         selectedButton.GetComponent<Image>().sprite = correctAnswerSprite;
     }
+    #endregion
+
+    #region SettingsMenu
+    #endregion
+
+    #region TitleScreen
+    #endregion
+
+    #region SwitchCanvas
+    ///<summary>
+    /// Finds all the canvas in the game including inactive and sets them all to inactive aside from the background canvas, 
+    ///then sets the desired canvas to active
+    ///</summary>
+    public void SwitchCanvas(Canvas canvasToSwitch)
+    {
+        Canvas[] foundCanvas = FindObjectsOfType<Canvas>(true);
+
+        foreach (Canvas canvas in foundCanvas)
+        {
+            if (canvas.name != "Background_Canvas")
+            {
+                canvas.gameObject.SetActive(false);
+            }
+        }
+
+        canvasToSwitch.gameObject.SetActive(true);
+    }
+    ///<summary>
+    /// Method which is called when the SwitchCanvasEvent is fired on the click of the play button
+    ///</summary>
+    public void OnSwitchCanvasEvent(int canvasIndex)
+    {
+
+        switch (canvasIndex)
+        {
+            case 0:
+                SwitchCanvas(titleScreenCanvas);
+                break;
+            case 1:
+                SwitchCanvas(settingScreenCanvas);
+                break;
+            case 2:
+                SwitchCanvas(quizScreenCanvas);
+                break;
+            case 4:
+                SwitchCanvas(endOfQuizCanvas);
+                break;
+        }
+
+    }
+    #endregion
+
+
 }
