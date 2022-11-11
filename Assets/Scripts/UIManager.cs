@@ -43,8 +43,16 @@ public class UIManager : MonoBehaviour
     ///</summary>
     private Button selectedButton;
 
-    [Header("Title Screen")]
-    [SerializeField] private Button[] titleButtons;
+    [Header("Settings Menu")]
+    [Header("Question Settings Slider")]
+    [SerializeField] Slider questionSettingsSlider;
+    [SerializeField] TextMeshProUGUI questionSettingsSliderMainText;
+    [SerializeField] TextMeshProUGUI questionSettingsSliderValueText;
+    [Header("Answer Time Settings")]
+    [SerializeField] Slider answerSettingsSlider;
+    [SerializeField] TextMeshProUGUI answerSettingsSliderMainText;
+    [SerializeField] TextMeshProUGUI answerSettingsSliderValueText;
+    
 
 
     // Start is called before the first frame update
@@ -172,6 +180,37 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region SettingsMenu
+    public void InitSettingsMenuScreen()
+    {
+        BaseQuestionSettings();
+        BaseAnswerTimeSettings();
+    }
+
+    private void BaseQuestionSettings()
+    {
+        questionSettingsSlider.maxValue = _settingsManager.GetQuestionDatabaseSize();
+        questionSettingsSlider.value = _settingsManager.GetQuizSize();
+        questionSettingsSliderMainText.text = "How Many Questions In Quiz?";
+        questionSettingsSliderValueText.text = questionSettingsSlider.value.ToString();
+    }
+    public void UpdateQuestionSlider()
+    {
+        questionSettingsSliderValueText.text = questionSettingsSlider.value.ToString();
+        _settingsManager.SetQuizSize((int)questionSettingsSlider.value);
+    }
+    private void BaseAnswerTimeSettings()
+    {
+        answerSettingsSlider.maxValue = _settingsManager.GetMaxTimeToAnswer();
+        answerSettingsSlider.value = _settingsManager.GetTimeToAnswer();
+        answerSettingsSliderMainText.text = "Seconds to answer each question?";
+        answerSettingsSliderValueText.text = answerSettingsSlider.value.ToString();
+    }
+    public void UpdateAnswerSlider()
+    {
+        answerSettingsSliderValueText.text = answerSettingsSlider.value.ToString();
+        _settingsManager.SetTimeToAnswer((int)answerSettingsSlider.value);
+    }
+
     #endregion
 
     #region TitleScreen
@@ -209,6 +248,7 @@ public class UIManager : MonoBehaviour
                 break;
             case 1:
                 SwitchCanvas(settingScreenCanvas);
+                InitSettingsMenuScreen(); //Not being called by the buttons
                 break;
             case 2:
                 SwitchCanvas(quizScreenCanvas);

@@ -10,7 +10,6 @@ using System.IO;
 ///</summary>
 public class Quiz
 {
-
     public Quiz(int quizSize)
     {
         this._QuizSize = quizSize;
@@ -19,11 +18,8 @@ public class Quiz
             chosenQuestionsThisRound.Clear();
         }
     }
+    SettingsManager _settingsManager = new SettingsManager();
 
-    ///<summary>
-    /// Current size of the questions in the JSON file. 
-    ///</summary>
-    const int QUESTION_DATABASE_LENGTH = 50; // Number of questions in Questions.JSON
     const string jsonPath = "Assets/Data/Questions.JSON";
     ///<summary>
     /// Number passed to the constructor to generate a quiz of desired amount of questions.
@@ -80,7 +76,7 @@ public class Quiz
         bool searchingForIndex = true; 
         while (searchingForIndex)
         {
-            questionIndex = Random.Range(1, QUESTION_DATABASE_LENGTH);
+            questionIndex = Random.Range(1, _settingsManager.GetQuestionDatabaseSize());
             if(!questionIndexes.Contains(questionIndex))
             {
                 questionIndexes.Add(questionIndex);
