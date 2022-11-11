@@ -198,7 +198,7 @@ public class UIManager : MonoBehaviour
     ///</summary>
     private void BaseQuestionSettings()
     {
-        questionSettingsSlider.value = _settingsManager.GetQuizSize();
+        questionSettingsSlider.value = _settingsManager.GetQuestionDatabaseSize();
         questionSettingsSliderMainText.text = "How Many Questions In Quiz?";
         questionSettingsSliderValueText.text = questionSettingsSlider.value.ToString();
     }

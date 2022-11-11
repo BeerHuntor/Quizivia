@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &15533700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4143,7 +4143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &1626478215
 Canvas:
   m_ObjectHideFlags: 0
@@ -4357,7 +4357,7 @@ MonoBehaviour:
   answerSettingsSlider: {fileID: 1461021859}
   answerSettingsSliderMainText: {fileID: 1182970077}
   answerSettingsSliderValueText: {fileID: 648570547}
-  endOfQuizMainText: {fileID: 0}
+  endOfQuizMainText: {fileID: 870377843}
 --- !u!4 &1646502388
 Transform:
   m_ObjectHideFlags: 0
